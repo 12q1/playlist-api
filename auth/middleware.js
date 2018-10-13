@@ -1,6 +1,9 @@
 const User = require('../users/model')
 const {toData} = require('./jwt.js')
 
+
+//--------------------Step 1.3-------------------------
+//A user should be able to authenticate using an Authorization header with a Bearer <JWT>
 function auth(req, res, next) {
   const auth = req.headers.authorization && req.headers.authorization.split(' ')
   if (auth && auth[0] === 'Bearer' && auth[1]) {
@@ -24,7 +27,7 @@ function auth(req, res, next) {
   }
   else {
     res.status(401).send({
-      message: 'Please supply some valid credentials'
+      message: `Your authentication token is invalid, if you got here by mistake please go back and try again, if you know what you're doing stop being naughty`
     })
   }
 }

@@ -6,6 +6,9 @@ const auth = require('./middleware.js')
 
 const router = new Router()
 
+
+//--------------------Step 1.2-------------------------
+//A user should be able to sign in by posting to /tokens and get a response { token: "<JWT>" }
 router.post('/tokens', (req, res, next) => {
   const {email, password} = req.body
   if(!email||!password)

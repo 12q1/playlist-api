@@ -1,10 +1,11 @@
 const { Router } = require('express')
 const Song = require('./model')
 const Playlist = require('../playlists/model')
+const auth = require('../auth/middleware.js')
 
 const router = new Router()
 
-router.get('/songs', (req, res, next) => {
+router.get('/songs', auth, (req, res, next) => {
   Song
     .findAll()
     .then(songs => {
@@ -13,7 +14,7 @@ router.get('/songs', (req, res, next) => {
     .catch(error => next(error))
 })
 
-router.get('/songs/:id', (req, res, next) => {
+router.get('/songs/:id', auth, (req, res, next) => {
   Song
     .findById(req.params.id, {include:[Playlist]})
     .then(song => {
@@ -27,10 +28,10 @@ router.get('/songs/:id', (req, res, next) => {
     .catch(error => next(error))
 })
 
-//------------------------------Step 2----------------------------------
+//------------------------------Step 3----------------------------------
 //A user should be able to add a song to the playlist with POST /playlists/:id/songs
 
-router.post('/playlists/:id/songs', (req, res, next) => {
+router.post('/playlists/:id/songs', auth,  (req, res, next) => {
   Song
     .create(req.body)
     .then(song => {
@@ -44,7 +45,7 @@ router.post('/playlists/:id/songs', (req, res, next) => {
     .catch(error => next(error))
 })
 
-router.put('/songs/:id', (req, res, next) => {
+router.put('/songs/:id', auth, (req, res, next) => {
   Song
     .findById(req.params.id)
     .then(song => {
@@ -58,7 +59,7 @@ router.put('/songs/:id', (req, res, next) => {
     .catch(error => next(error))
 })
 
-router.delete('/songs/:id', (req, res, next) => {
+router.delete('/songs/:id', auth,  (req, res, next) => {
   Song
     .findById(req.params.id)
     .then(song => {

@@ -4,6 +4,9 @@ const bcrypt = require('bcrypt');
 
 const router = new Router()
 
+//--------------------Step 1.1-------------------------
+//A user should be able to sign up by posting email, password, and password_confirmation to /users
+
 router.post('/users', (req,res,next)=>{
   const user = {
     email: req.body.email,
