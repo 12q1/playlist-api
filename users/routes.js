@@ -19,7 +19,7 @@ router.post('/users', (req,res,next)=>{
       if(!person) res.status(401).send({
         message: 'You dun goofd, send a e-mail and password next time'
       })
-      res.status(201).send(`Your email address was saved as '${person.email}'`)
+      res.status(201).send(`Your email address was saved as '${person.email}', your userId is ${person.id}`)
     })
     .catch(error=>next(error))
 })

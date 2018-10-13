@@ -1,5 +1,6 @@
 const Sequelize = require('sequelize')
 const sequelize = require('../db')
+const Playlists = require('../playlists/model.js')
 
 const User = sequelize.define('users', {
   email: {
@@ -14,5 +15,7 @@ const User = sequelize.define('users', {
   timestamps: true,
   tableName: 'users'
 })
+
+User.hasMany(Playlists, {as: 'playlists', foreignKey: 'user_id'})
 
 module.exports = User

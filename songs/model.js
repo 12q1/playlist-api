@@ -1,6 +1,6 @@
 const Sequelize = require('sequelize')
 const sequelize = require('../db')
-const Playlist = require('../playlists/model')
+//const Playlist = require('../playlists/model')
 
 const Song = sequelize.define('songs', {
   title: {
@@ -20,14 +20,15 @@ const Song = sequelize.define('songs', {
   },
   playlistId: {
     type: Sequelize.INTEGER,
-    field: 'playlist_id'
+    field: 'playlist_id',
+    allowNull: false
   }
 }, {
-  timestamps: false,
+  timestamps: true,
   tableName: 'songs'
 })
 
-Song.belongsTo(Playlist)
+//Song.belongsTo(Playlist, {foreignKey: 'playlist_id'})
 //Song.hasOne(Playlist)
 
 module.exports = Song
