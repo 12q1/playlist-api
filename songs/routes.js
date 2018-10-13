@@ -5,6 +5,25 @@ const auth = require('../auth/middleware.js')
 
 const router = new Router()
 
+//---------------------Step 3--------------
+//A user should be able to add a song to the playlist with POST /playlists/:id/songs
+
+router.post('/playlists/:id/songs', auth,  (req, res, next) => {
+  Song
+    .create(req.body)
+    .then(song => {
+      if (!song) {
+        return res.status(404).send({
+          message: `Song does not exist`
+        })
+      }
+      return res.status(201).send(song)
+    })
+    .catch(error => next(error))
+})
+//----------------End of Step 3------------
+
+
 router.get('/songs', auth, (req, res, next) => {
   Song
     .findAll()
@@ -24,23 +43,6 @@ router.get('/songs/:id', auth, (req, res, next) => {
         })
       }
       return res.send(song)
-    })
-    .catch(error => next(error))
-})
-
-//------------------------------Step 3----------------------------------
-//A user should be able to add a song to the playlist with POST /playlists/:id/songs
-
-router.post('/playlists/:id/songs', auth,  (req, res, next) => {
-  Song
-    .create(req.body)
-    .then(song => {
-      if (!song) {
-        return res.status(404).send({
-          message: `Song does not exist`
-        })
-      }
-      return res.status(201).send(song)
     })
     .catch(error => next(error))
 })
