@@ -6,7 +6,7 @@ const auth = require('./middleware.js')
 
 const router = new Router()
 
-router.post('/login', (req, res, next) => {
+router.post('/tokens', (req, res, next) => {
   const {email, password} = req.body
   if(!email||!password)
   {
@@ -30,7 +30,7 @@ router.post('/login', (req, res, next) => {
     if (bcrypt.compareSync(req.body.password, entity.password)) {
 
       res.send({
-        jwt: toJWT({ userId: entity.id })
+        token: toJWT({ userId: entity.id })
       })
     }
     else {

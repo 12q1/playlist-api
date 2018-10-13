@@ -27,7 +27,10 @@ router.get('/songs/:id', (req, res, next) => {
     .catch(error => next(error))
 })
 
-router.post('/songs', (req, res, next) => {
+//------------------------------Step 2----------------------------------
+//A user should be able to add a song to the playlist with POST /playlists/:id/songs
+
+router.post('/playlists/:id/songs', (req, res, next) => {
   Song
     .create(req.body)
     .then(song => {
