@@ -3,10 +3,17 @@
   "version": "1.0.0",
   "main": "index.js",
   "private": true,
+  "scripts": {
+    "start": "node ."
+  },
   "dependencies": {
     "body-parser": "^1.18.3",
     "express": "^4.16.4",
+    "jsonwebtoken": "^8.3.0",
     "pg": "^7.4.3",
     "sequelize": "^4.38.0"
-  }
+  },
+  "repository": "git@github.com:12q1/playlist-api.git",
+  "author": "12q1 <thomasham89@gmail.com>",
+  "license": "MIT"
 }
