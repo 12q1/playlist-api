@@ -1,5 +1,5 @@
 const { Router } = require('express')
-const {toJWT, toData} = require('.jwt.js')
+const {toJWT, toData} = require('./jwt.js')
 
 const router = new Router()
 
